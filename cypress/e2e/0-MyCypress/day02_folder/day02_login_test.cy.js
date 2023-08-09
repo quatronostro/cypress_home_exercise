@@ -16,6 +16,6 @@ describe('login test', () => {
         cy.get('#login-password').type('M123456.b') // login pass box
         cy.get('#sign_up > :nth-child(3) > .btn').click() // login button
 
-        cy.contains('Welcome')
+        cy.contains('Welcome') // assert login
     });
 });
