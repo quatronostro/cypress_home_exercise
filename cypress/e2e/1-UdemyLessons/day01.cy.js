@@ -4,12 +4,11 @@ describe('first udemy test', () => {
     
     // with it, we are describing our test steps
     it('Go to cypress page', () => {
-        cy.visit("https://www.cypress.io")
+        cy.visit("https://www.amazon.com.tr/")
         
     });
 
     it('click cookies', () => {
-        cy.get('body').click();
+        cy.get('#a-autoid-0').click();
     });
-
 });
