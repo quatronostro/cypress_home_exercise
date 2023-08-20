@@ -15,11 +15,11 @@ describe('Amazon Test', () => {
     //});
 
     // click with xpath
-    it('click with xpath', () => {
+    it('Click with xpath', () => {
         cy.xpath('//*[@id="sp-cc-accept"]').click();
     });
 
-    it('send keys to search box', () => {
+    it('Send keys to search box', () => {
         cy.get('#twotabsearchtextbox').type('Samsung S23 Ultra{enter}');
         
         // cookies (again?)
@@ -30,7 +30,7 @@ describe('Amazon Test', () => {
 
     });
 
-    it('choose first product on the page', () => {
+    it('Choose first product on the page', () => {
         cy.wait(1000)
 
         //with eq => but its not working properly cause of page load problems
@@ -41,10 +41,32 @@ describe('Amazon Test', () => {
 
     });
 
-    it('back to main page', () => {
+    it('Back to main page', () => {
         cy.go('back');
         //cy.go('back');
         cy.xpath('//*[@id="sp-cc-accept"]').click();
 
+        //to go forward
+        //cy.go('forward);
+
     });
+
+    it('Choose electronic from category drop down menu', () => {
+
+        //choose from drop down menu
+        cy.get('#searchDropdownBox').select('Elektronik')
+    });
+
+    it('Click account registiration', () => {
+        cy.get('#nav-link-accountList').click();
+
+        //click with contains
+        cy.contains("Amazon hesabınızı oluşturun").click();
+
+    });
+
+    it('Assertion', () => {
+        cy.get(':nth-child(1) > :nth-child(2) > .a-form-label').should("contain", "Ad - Soyad")
+    });
+
 });
