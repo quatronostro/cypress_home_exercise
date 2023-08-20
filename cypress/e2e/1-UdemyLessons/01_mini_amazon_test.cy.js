@@ -19,6 +19,14 @@ describe('Amazon Test', () => {
         cy.xpath('//*[@id="sp-cc-accept"]').click();
     });
 
+    it('Verify url and title', () => {
+        // Assert url
+        cy.url().should('include', 'amazon')
+
+        // Assert title
+        cy.title().should('include', 'Amazon')
+    });
+
     it('Send keys to search box', () => {
         cy.get('#twotabsearchtextbox').type('Samsung S23 Ultra{enter}');
         
@@ -66,7 +74,49 @@ describe('Amazon Test', () => {
     });
 
     it('Assertion', () => {
+        //these are for verifying text contains in locator
         cy.get(':nth-child(1) > :nth-child(2) > .a-form-label').should("contain", "Ad - Soyad")
+        cy.get('[for="ap_email"]').should("be.visible", "Cep telefonu numarası veya e-posta")
+        // if text has some white space we should use codes above
+        // but if we trying to find exact same string we should use have.text for assertion
+
+        // This is another way to assertion
+        cy.contains("Cep telefonu numarası veya e-posta").should("be.visible")
+
     });
+
+});
+
+
+// Second test case
+describe('Searching product on Amazon', () => {
+    
+    it('Visit Amazon home page', () => {
+        cy.visit("https://www.amazon.com.tr/")
+    });
+
+    it('click cookies', () => {
+        cy.get('#a-autoid-0').click();
+    });
+
+    it('Enter the product name on search box', () => {
+        // String variable
+        const product_name = "alcatel 2019g";
+        cy.get('#twotabsearchtextbox').type(product_name);
+
+        // Search button
+        cy.get('#nav-search-submit-button').click();
+        
+        // cookies (again?)
+        cy.xpath('//*[@id="sp-cc-accept"]').click();
+
+    });
+
+    it('Verify search result', () => {
+        cy.get('.sg-col-inner').should("have.length", 35)
+        // this number is always changing so its not dynamic
+        // this test step cant pass...
+    });
+
 
 });
