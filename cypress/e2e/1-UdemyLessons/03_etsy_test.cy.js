@@ -29,17 +29,18 @@ describe('Etsy Test - Search product, sort by a price and add to basket', () => 
         cy.get('#sortby > .wt-menu__trigger').click();
 
         // verify menu body contains the following items
+        // in here we are asserting drop down menu items are equal to this array or not
         const filter_options = ['Relevancy', 'Lowest Price', 'Highest Price', 'Top Customer Reviews', 'Most Recent'];
 
         filter_options.forEach((option) => {
-            cy.get('#sortby > .wt-menu__body').
+            cy.get('#sortby > .wt-menu__body a').
             contains(option).
             should("be.visible").
             then(() => {
                 cy.log('"${option}" is visible');
             });
         });
-        
+
 
         
 
