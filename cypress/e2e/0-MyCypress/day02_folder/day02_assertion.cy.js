@@ -14,5 +14,9 @@ describe('', () => {
 
         // 3 cy.title().should => controls title
         cy.title().should('contain', 'Login')
+
+        // 4. be.visible => controls element is visible or not
+        cy.get('.text-14px').should('be.visible');
+        
     });
 });
